@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Bracamonte Inmobiliaria · Barquisimeto & Cabudare</title>
+<meta name="description" content="Cultivamos las raíces de tu nuevo hogar. Inmuebles disponibles en Barquisimeto y Cabudare.">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#023341">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bracamonte">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --naranja:#FB9A00; --naranja-dark:#DB8600; --naranja-pale:#FFF0D6;
+  --dark:#023341; --dark2:#012029; --terciario:#FD5E02; --terciario-pale:#FFE7DA;
+  --crema:#FCF5E3; --white:#FFFFFF; --gris:#ADADAD; --mid:#5C6B70; --border:#E7E0CC;
+  --green:#2D7A4F; --green-bg:#E8F5EE; --red:#C0392B; --red-bg:#FDECEA;
+  --amber:#D4870A; --amber-bg:#FEF3E0;
+  --shadow:0 2px 10px rgba(2,51,65,.08); --shadow-lg:0 14px 34px rgba(2,51,65,.18);
+  --max-w:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--crema);color:var(--dark);min-height:100vh;font-size:15px;overflow-x:hidden}
+img{display:block;max-width:100%}
+button,input,select,textarea{font-family:inherit}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+@media(max-width:600px){.wrap{padding:0 16px}}
+
+nav{position:sticky;top:0;z-index:200;background:rgba(2,51,65,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:13px 0}
+.brand{display:flex;align-items:center;gap:10px;color:white;text-decoration:none}
+.brand-ico{width:36px;height:36px;background:var(--naranja);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.brand-txt h1{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.5px;line-height:1}
+.brand-txt span{font-size:9px;color:var(--naranja);letter-spacing:2px;text-transform:uppercase}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.btn-nav{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn-nav:hover{background:rgba(255,255,255,.16)}
+.btn-nav.primary{background:var(--naranja);color:var(--dark);border-color:var(--naranja)}
+.btn-nav.primary:hover{background:var(--naranja-dark)}
+.pill-user{display:none}
+@media(min-width:640px){.pill-user{display:flex;align-items:center;gap:8px;color:white;font-size:13px}}
+
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;background:var(--dark);color:white;padding:40px 0;overflow:hidden}
+.hero-in{position:relative;z-index:2;max-width:640px}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,7vw,58px);font-weight:700;line-height:1.03;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--naranja)}
+.hero p{margin-top:16px;font-size:clamp(15px,2vw,17px);color:rgba(255,255,255,.75);max-width:480px;line-height:1.6}
+.hero-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero{background:var(--naranja);color:var(--dark);border:none;border-radius:10px;padding:15px 24px;font-weight:700;font-size:15px;cursor:pointer;transition:.2s}
+.btn-hero:hover{background:var(--naranja-dark);transform:translateY(-1px)}
+.btn-hero.ghost{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.3)}
+.btn-hero.ghost:hover{border-color:var(--terciario);color:var(--terciario)}
+.scroll-hint{margin-top:56px;font-size:12px;color:rgba(255,255,255,.4)}
+.roots{position:absolute;right:-40px;bottom:-20px;width:56%;max-width:640px;opacity:.45;z-index:1;pointer-events:none}
+@media(max-width:820px){.roots{opacity:.22;right:-100px}}
+
+.filters{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:61px;z-index:150}
+.filters-in{display:flex;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.filters-in::-webkit-scrollbar{display:none}
+.filters select,.filters input{background:var(--crema);border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--dark);white-space:nowrap;outline:none;flex-shrink:0}
+.filters select:focus,.filters input:focus{border-color:var(--naranja)}
+.filters input{min-width:180px}
+
+.listings{padding:36px 0 80px;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.listings.reveal{opacity:1;transform:translateY(0)}
+.sec-head{margin-bottom:22px}
+.sec-head h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(24px,4vw,30px);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+@media(max-width:480px){.grid{grid-template-columns:1fr}}
+.card{background:var(--white);border-radius:14px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .2s,transform .15s;cursor:pointer}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-img{position:relative;aspect-ratio:4/3;background:var(--crema);display:flex;align-items:center;justify-content:center}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-img .ph-empty{font-size:30px;opacity:.3}
+.card-badges{position:absolute;top:10px;left:10px;display:flex;gap:6px}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.badge.op{background:var(--dark);color:var(--naranja)}
+.photo-count{position:absolute;bottom:10px;right:10px;background:rgba(2,51,65,.78);color:white;font-size:11px;padding:3px 8px;border-radius:12px}
+.card-body{padding:15px 16px}
+.card-body .loc{font-size:12px;color:var(--terciario);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.card-body h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;margin-top:3px}
+.card-body .ubic{font-size:13px;color:var(--mid);margin-top:2px}
+.card-attrs{display:flex;gap:12px;margin-top:10px;font-size:13px;color:var(--mid);flex-wrap:wrap}
+.card-actions{display:flex;gap:8px;padding:0 16px 16px}
+.btn-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#25D366;color:white;border:none;border-radius:9px;padding:11px;font-weight:600;font-size:13px;cursor:pointer;text-decoration:none}
+.btn-wa:hover{background:#1DAA57}
+.empty-state{text-align:center;padding:60px 20px;color:var(--mid)}
+
+footer{background:var(--dark2);color:rgba(255,255,255,.5);padding:30px 0;font-size:13px;text-align:center}
+footer strong{color:var(--naranja)}
+
+.mo{position:fixed;inset:0;background:rgba(2,51,65,.6);z-index:400;display:none;align-items:center;justify-content:center;padding:16px}
+.mo.open{display:flex}
+.modal{background:var(--white);border-radius:16px;width:100%;max-width:420px;max-height:92vh;overflow-y:auto;padding:28px;animation:pop .18s ease;position:relative}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.modal h2{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700}
+.modal .sub{font-size:13px;color:var(--mid);margin-top:4px}
+.f{margin-top:16px}
+.f label{display:block;font-size:11px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.f input,.f select,.f textarea{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;background:var(--crema);outline:none;font-size:14px;transition:.2s;font-family:inherit}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--naranja);background:white}
+.btn-submit{width:100%;background:var(--naranja);color:var(--dark);border:none;border-radius:9px;padding:13px;font-weight:700;font-size:15px;cursor:pointer;margin-top:18px}
+.btn-submit:hover{background:var(--naranja-dark)}
+.btn-submit:disabled{opacity:.5}
+.switch-mode{text-align:center;margin-top:14px;font-size:13px;color:var(--mid)}
+.switch-mode a{color:var(--naranja);font-weight:600;cursor:pointer;text-decoration:none}
+.msg{border-radius:9px;padding:11px 13px;font-size:13px;margin-top:14px;display:none}
+.msg.err{background:var(--red-bg);color:var(--red);display:block}
+.msg.ok{background:var(--green-bg);color:var(--green);display:block}
+.btn-close-m{position:absolute;top:16px;right:16px;background:var(--crema);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;color:var(--mid);font-size:15px;z-index:5}
+
+#mo-detail .modal{max-width:640px;padding:0;overflow:hidden}
+.det-gallery{position:relative;aspect-ratio:4/3;background:var(--dark2)}
+.det-gallery img{width:100%;height:100%;object-fit:cover;animation:fadein .25s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.det-thumbs{display:flex;gap:6px;padding:10px 16px;overflow-x:auto}
+.det-thumbs img{width:56px;height:56px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;flex-shrink:0}
+.det-thumbs img.active{border-color:var(--naranja)}
+.det-body{padding:20px 24px 26px}
+.det-body .loc{font-size:12px;color:var(--terciario);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.det-body h2{font-family:'Barlow Condensed',sans-serif;font-size:26px;margin-top:3px}
+.det-body .ubic{font-size:14px;color:var(--mid);margin-top:2px}
+.det-attrs{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
+.det-attrs span{font-size:13px;color:var(--dark);background:var(--crema);padding:6px 12px;border-radius:8px}
+.det-desc{margin-top:16px;font-size:14px;line-height:1.7;color:var(--dark)}
+.det-cta{margin-top:20px}
+
+.drawer{position:fixed;inset:0;background:rgba(2,51,65,.55);z-index:350;display:none}
+.drawer.open{display:block}
+.drawer-panel{position:absolute;top:0;right:0;bottom:0;width:100%;max-width:680px;background:var(--crema);overflow-y:auto;animation:slidein .22s ease;padding-bottom:env(safe-area-inset-bottom)}
+@keyframes slidein{from{transform:translateX(30px);opacity:0}to{transform:translateX(0);opacity:1}}
+.drawer-head{background:var(--dark);color:white;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0}
+.drawer-head h2{font-family:'Barlow Condensed',sans-serif;font-size:22px}
+.dash-stats{display:flex;gap:10px;padding:18px 24px 0;flex-wrap:wrap}
+.dstat{background:white;border:1px solid var(--border);border-radius:12px;padding:12px 16px;flex:1;min-width:100px}
+.dstat .n{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:var(--naranja)}
+.dstat .l{font-size:11px;color:var(--mid);text-transform:uppercase;letter-spacing:.5px}
+.tabs{display:flex;gap:6px;padding:16px 24px 0}
+.tab{background:none;border:none;padding:9px 4px;font-size:13px;font-weight:600;color:var(--mid);cursor:pointer;border-bottom:2px solid transparent}
+.tab.active{color:var(--dark);border-color:var(--naranja)}
+.dpanel{padding:20px 24px 60px}
+.prow{background:white;border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.prow-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.prow-head b{font-family:'Barlow Condensed',sans-serif;font-size:17px}
+.btn-mini{background:var(--dark);color:var(--naranja);border:none;border-radius:7px;padding:8px 13px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-mini.save{background:var(--naranja);color:var(--dark)}
+.btn-mini.gray{background:var(--crema);color:var(--mid);border:1px solid var(--border)}
+.pending-row{display:flex;justify-content:space-between;align-items:center;background:white;border:1px solid var(--border);border-radius:10px;padding:12px 15px;margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.pending-row .who{font-size:13px}
+.pending-row .who b{display:block;font-size:14px}
+.pr-actions{display:flex;gap:6px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--dark);color:white;padding:12px 20px;border-radius:9px;font-size:14px;font-weight:500;z-index:600;opacity:0;transition:.28s;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Gestor de fotos en el editor */
+.photo-mgr{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.photo-thumb{position:relative;width:70px;height:70px;border-radius:8px;overflow:hidden}
+.photo-thumb img{width:100%;height:100%;object-fit:cover}
+.photo-thumb button{position:absolute;top:2px;right:2px;background:rgba(2,51,65,.8);color:white;border:none;border-radius:50%;width:20px;height:20px;font-size:11px;cursor:pointer;line-height:1}
+.photo-add{width:70px;height:70px;border-radius:8px;border:1.5px dashed var(--border);background:var(--crema);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mid);cursor:pointer;flex-shrink:0}
+.photo-add input{display:none}
+.photo-add.uploading{opacity:.5;pointer-events:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#" class="brand">
+      <div class="brand-ico">🏠</div>
+      <div class="brand-txt"><h1>BRACAMONTE</h1><span>Inmobiliaria</span></div>
+    </a>
+    <div class="nav-actions" id="nav-actions">
+      <button class="btn-nav primary" onclick="openLogin()">Acceso asesoras</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="wrap hero-in">
+    <h1>Cultivamos las <em>raíces</em><br>de tu nuevo hogar 🌱</h1>
+    <p>Inmuebles en Barquisimeto y Cabudare, acompañados por un equipo que conoce cada calle. Compra, vende o alquila con confianza.</p>
+    <div class="hero-cta">
+      <button class="btn-hero" onclick="verInmuebles()">🏘️ Ver inmuebles disponibles</button>
+      <a class="btn-hero ghost" id="hero-wa" href="#" target="_blank">💬 Escribir por WhatsApp</a>
+    </div>
+    <div class="scroll-hint">↓ Desliza o toca el botón para ver el catálogo</div>
+  </div>
+  <svg class="roots" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#FB9A00" stroke-width="2" stroke-linecap="round">
+      <path d="M480 20 C 420 40, 400 120, 340 160 C 290 192, 260 240, 250 320 C 245 355, 230 380, 200 395"/>
+      <path d="M340 160 C 320 190, 300 200, 260 210"/>
+      <path d="M340 160 C 370 185, 390 210, 385 250"/>
+      <path d="M250 320 C 220 330, 200 320, 175 340"/>
+      <path d="M250 320 C 270 340, 290 345, 300 370"/>
+      <path d="M480 20 C 460 50, 470 80, 440 100"/>
+    </g>
+    <g fill="#FD5E02" opacity=".85">
+      <circle cx="480" cy="20" r="5"/><circle cx="340" cy="160" r="4"/><circle cx="250" cy="320" r="4"/>
+      <circle cx="200" cy="395" r="4"/><circle cx="260" cy="210" r="3"/><circle cx="385" cy="250" r="3"/>
+      <circle cx="175" cy="340" r="3"/><circle cx="300" cy="370" r="3"/><circle cx="440" cy="100" r="3"/>
+    </g>
+  </svg>
+</section>
+
+<div class="filters">
+  <div class="wrap filters-in">
+    <input type="text" id="fq" placeholder="🔍 Buscar por ubicación, tipo…" oninput="debounceFilter()">
+    <select id="ftipo" onchange="applyFilters()"><option value="">Tipo</option><option>Apartamento</option><option>Casa</option><option>Casa Quinta</option><option>Galpón</option><option>Granja</option><option>Local Comercial</option><option>Oficina</option><option>Pent House</option><option>Town House</option></select>
+    <select id="fop" onchange="applyFilters()"><option value="">Operación</option><option>Venta</option><option>Alquiler</option></select>
+    <select id="fciudad" onchange="applyFilters()"><option value="">Ciudad</option><option>Barquisimeto</option><option>Cabudare</option><option>El Manzano</option><option>Yaritagua</option></select>
+  </div>
+</div>
+
+<section class="listings wrap" id="listings">
+  <div class="sec-head"><h2>🏘️ Inmuebles disponibles</h2></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty-state" id="empty" style="display:none">🔎 No encontramos inmuebles con esos filtros.</div>
+</section>
+
+<footer>
+  🌱 <strong>Bracamonte Inmobiliaria</strong> · Barquisimeto & Cabudare · «Cultivamos las raíces de tu nuevo hogar»
+</footer>
+
+<div class="mo" id="mo-detail" onclick="coo(event,'mo-detail')">
+  <div class="modal">
+    <button class="btn-close-m" onclick="closeModal('mo-detail')">✕</button>
+    <div class="det-gallery" id="det-gallery"></div>
+    <div class="det-thumbs" id="det-thumbs"></div>
+    <div class="det-body">
+      <div class="loc" id="det-loc"></div>
+      <h2 id="det-title"></h2>
+      <div class="ubic" id="det-ubic"></div>
+      <div class="det-attrs" id="det-attrs"></div>
+      <p class="det-desc" id="det-desc"></p>
+      <div class="det-cta">
+        <a class="btn-wa" id="det-wa" href="#" target="_blank">💬 Escribir por WhatsApp</a>
+        <a id="det-share" href="#" target="_blank" style="display:block;text-align:center;margin-top:10px;font-size:13px;color:var(--mid);text-decoration:none">🔗 Ver ficha completa / Compartir</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mo" id="mo-login" onclick="coo(event,'mo-login')">
+  <div class="modal">
+    <button class="btn-close-m" onclick="closeModal('mo-login')">✕</button>
+    <h2 id="lm-title">🔐 Acceso asesoras</h2>
+    <div class="sub" id="lm-sub">Ingresa con tu correo y clave.</div>
+    <div id="login-form">
+      <div class="f"><label>Correo</label><input type="email" id="li-email" placeholder="tucorreo@bracamonte.com"></div>
+      <div class="f"><label>Clave</label><input type="password" id="li-pass" placeholder="Tu clave"></div>
+      <button class="btn-submit" id="li-btn" onclick="doLogin()">Ingresar</button>
+      <div class="switch-mode">¿Aún no tienes acceso? <a onclick="showSignup()">Solicítalo aquí</a></div>
+    </div>
+    <div id="signup-form" style="display:none">
+      <div class="f"><label>Nombre completo</label><input type="text" id="su-name" placeholder="Tu nombre"></div>
+      <div class="f"><label>Correo</label><input type="email" id="su-email" placeholder="tucorreo@bracamonte.com"></div>
+      <div class="f"><label>Clave</label><input type="password" id="su-pass" placeholder="Mínimo 8 caracteres"></div>
+      <div class="f"><label>Confirmar clave</label><input type="password" id="su-pass2" placeholder="Repite la clave"></div>
+      <button class="btn-submit" id="su-btn" onclick="doSignup()">Solicitar acceso</button>
+      <div class="switch-mode">¿Ya tienes cuenta? <a onclick="showLogin()">Inicia sesión</a></div>
+    </div>
+    <div class="msg" id="lm-msg"></div>
+  </div>
+</div>
+
+<div class="drawer" id="drawer" onclick="coo(event,'drawer')">
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <div><h2>☰ Menú</h2><div style="font-size:12px;color:rgba(255,255,255,.55)" id="who-am-i"></div></div>
+      <button class="btn-close-m" onclick="closeDrawer()" style="position:static">✕</button>
+    </div>
+    <div class="dash-stats" id="dash-stats"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="mine" onclick="switchTab('mine')">🏠 Mis inmuebles</button>
+      <button class="tab" data-tab="approve" id="tab-approve" style="display:none" onclick="switchTab('approve')">✅ Aprobar accesos</button>
+    </div>
+    <div class="dpanel" id="panel-mine"></div>
+    <div class="dpanel" id="panel-approve" style="display:none"></div>
+  </div>
+</div>
+
+<div class="mo" id="mo-edit" onclick="coo(event,'mo-edit')">
+  <div class="modal" style="max-width:480px">
+    <button class="btn-close-m" onclick="closeModal('mo-edit')">✕</button>
+    <h2 id="ed-title">Editar inmueble</h2>
+    <div class="sub" id="ed-code"></div>
+    <div class="f"><label>📷 Fotos</label>
+      <div class="photo-mgr" id="ed-photos"></div>
+    </div>
+    <div id="ed-fields"></div>
+    <button class="btn-submit" id="ed-save" onclick="saveEdit()">💾 Guardar cambios</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════
+//  CONFIG
+// ═══════════════════════════════════════════
+const SCRIPT_URL = "";
+const WHATSAPP_NUMERO = "584140000000";
+const CLOUDINARY_CLOUD = "ggwou7jw";
+const CLOUDINARY_PRESET = "bracamonte";
+
+let listings = [];
+let session = null;
+let currentDetail = null;
+let editPhotos = [];
+
+function jsonp(params){
+  return new Promise((res,rej)=>{
+    if(!SCRIPT_URL){ rej(new Error('SCRIPT_URL no configurado')); return; }
+    const cb='cb_'+Date.now()+Math.random().toString(36).slice(2);
+    const sc=document.createElement('script');
+    const qs=Object.entries(params).map(([k,v])=>encodeURIComponent(k)+'='+encodeURIComponent(v)).join('&');
+    sc.src=SCRIPT_URL+'?'+qs+'&callback='+cb;
+    const t=setTimeout(()=>{cleanup();rej(new Error('Tiempo de espera agotado'));},15000);
+    sc.onerror=()=>{cleanup();rej(new Error('Error de red'));};
+    window[cb]=(d)=>{cleanup();res(d);};
+    function cleanup(){clearTimeout(t);delete window[cb];if(sc.parentNode)document.body.removeChild(sc);}
+    document.body.appendChild(sc);
+  });
+}
+
+async function post(action, payload){
+  if(!SCRIPT_URL) throw new Error('SCRIPT_URL no configurado');
+  const r = await fetch(SCRIPT_URL, {
+    method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify({action, ...payload})
+  });
+  const d = await r.json();
+  if(d.status !== 'ok') throw new Error(d.msg || 'Error');
+  return d;
+}
+
+async function uploadToCloudinary(file){
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLOUDINARY_PRESET);
+  const r = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method:'POST', body: fd });
+  const d = await r.json();
+  if(!d.secure_url) throw new Error('No se pudo subir la foto');
+  return d.secure_url;
+}
+
+// ═══════════════════════════════════════════
+//  LANDING
+// ═══════════════════════════════════════════
+function verInmuebles(){
+  document.getElementById('listings').classList.add('reveal');
+  document.getElementById('listings').scrollIntoView({behavior:'smooth'});
+}
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('reveal'); });
+},{threshold:0.1});
+io.observe(document.getElementById('listings'));
+
+// ═══════════════════════════════════════════
+//  CATÁLOGO — cache-first
+// ═══════════════════════════════════════════
+function renderFromCache(){
+  try{
+    const cached = JSON.parse(localStorage.getItem('bc_listings')||'null');
+    if(cached && cached.length){ listings = cached; applyFilters(); }
+  }catch(e){}
+}
+async function loadPublicListings(){
+  renderFromCache();
+  try{
+    const d = await jsonp({action:'publicList'});
+    listings = d.data || [];
+    localStorage.setItem('bc_listings', JSON.stringify(listings));
+    applyFilters();
+  }catch(e){
+    if(!listings.length) document.getElementById('grid').innerHTML = '<p style="grid-column:1/-1;color:var(--mid);text-align:center;padding:40px 0">No se pudo conectar. Intenta de nuevo en unos segundos.</p>';
+  }
+}
+
+const SITE_URL = "https://grupobracamonte.com";
+
+function slugify(str){
+  return String(str||'').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9\s-]/g,'').trim()
+    .replace(/\s+/g,'-').replace(/-+/g,'-');
+}
+function propertyUrl(p){
+  const slug = `${slugify(`${p.tipo} ${p.loc} ${p.op}`)}-${p.codigo}`.toLowerCase();
+  return `${SITE_URL}/inmuebles/${slug}/`;
+}
+function waLink(p){
+  const num = (p.telefonoAsesora || WHATSAPP_NUMERO).replace(/\D/g,'');
+  const txt = `Me interesa éste inmueble COD ${p.codigo} ${propertyUrl(p)}`;
+  return `https://wa.me/${num}?text=${encodeURIComponent(txt)}`;
+}
+
+function autoDesc(p){
+  const partes=[`${p.tipo||'Inmueble'} en ${p.loc||'ubicación a confirmar'}${p.ciudad?', '+p.ciudad:''}.`];
+  const attrs=[];
+  if(p.hab) attrs.push(`${p.hab} habitaciones`);
+  if(p.ban) attrs.push(`${p.ban} baños`);
+  if(p.m2c) attrs.push(`${p.m2c} de construcción`);
+  if(attrs.length) partes.push(`Cuenta con ${attrs.join(', ')}.`);
+  if(p.op) partes.push(`Disponible en ${p.op.toLowerCase()}.`);
+  return partes.join(' ');
+}
+
+function renderGrid(list){
+  const grid=document.getElementById('grid');
+  const empty=document.getElementById('empty');
+  if(!list.length){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML = list.map(p=>{
+    const photos = p.fotos || [];
+    const img = photos[0] ? `<img src="${photos[0]}" alt="${p.tipo} en ${p.loc}" loading="lazy">` : `<div class="ph-empty">🏠</div>`;
+    const attrs=[];
+    if(p.hab) attrs.push(`🛏️ ${p.hab}`);
+    if(p.ban) attrs.push(`🚿 ${p.ban}`);
+    if(p.m2c) attrs.push(`📐 ${p.m2c}`);
+    return `<div class="card" onclick="openDetail('${p.codigo}')">
+      <div class="card-img">${img}
+        <div class="card-badges"><span class="badge op">${p.op||''}</span></div>
+        ${photos.length>1?`<div class="photo-count">📷 ${photos.length}</div>`:''}
+      </div>
+      <div class="card-body">
+        <div class="loc">${p.ciudad||''}</div>
+        <h3>${p.tipo||'Inmueble'}</h3>
+        <div class="ubic">📍 ${p.loc||''}</div>
+        ${attrs.length?`<div class="card-attrs">${attrs.join(' · ')}</div>`:''}
+      </div>
+      <div class="card-actions">
+        <a class="btn-wa" href="${waLink(p)}" target="_blank" onclick="event.stopPropagation()">💬 Escribir por WhatsApp</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+let ft;
+function debounceFilter(){ clearTimeout(ft); ft=setTimeout(applyFilters,180); }
+function applyFilters(){
+  const q=document.getElementById('fq').value.toLowerCase().trim();
+  const tipo=document.getElementById('ftipo').value;
+  const op=document.getElementById('fop').value;
+  const ciudad=document.getElementById('fciudad').value;
+  const f = listings.filter(p=>{
+    if(tipo && p.tipo!==tipo) return false;
+    if(op && p.op!==op) return false;
+    if(ciudad && p.ciudad!==ciudad) return false;
+    if(q && !`${p.tipo} ${p.loc} ${p.ciudad}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  renderGrid(f);
+}
+
+// ═══════════════════════════════════════════
+//  DETALLE
+// ═══════════════════════════════════════════
+function openDetail(codigo){
+  const p = listings.find(x=>x.codigo===codigo);
+  if(!p) return;
+  currentDetail = p;
+  const photos = p.fotos && p.fotos.length ? p.fotos : [];
+  document.getElementById('det-gallery').innerHTML = photos.length
+    ? `<img id="det-main-img" src="${photos[0]}" alt="${p.tipo}">`
+    : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:40px;opacity:.4">🏠</div>`;
+  document.getElementById('det-thumbs').innerHTML = photos.length>1 ? photos.map((f,i)=>
+    `<img src="${f}" class="${i===0?'active':''}" onclick="switchDetailPhoto(${i})">`).join('') : '';
+  document.getElementById('det-loc').textContent = p.ciudad||'';
+  document.getElementById('det-title').textContent = p.tipo||'Inmueble';
+  document.getElementById('det-ubic').textContent = '📍 ' + (p.loc||'');
+  const attrs=[];
+  if(p.hab) attrs.push(`🛏️ ${p.hab} habitaciones`);
+  if(p.ban) attrs.push(`🚿 ${p.ban} baños`);
+  if(p.m2c) attrs.push(`📐 ${p.m2c}`);
+  if(p.op) attrs.push(`🏷️ ${p.op}`);
+  document.getElementById('det-attrs').innerHTML = attrs.map(a=>`<span>${a}</span>`).join('');
+  document.getElementById('det-desc').textContent = p.descripcion && p.descripcion.trim() ? p.descripcion : autoDesc(p);
+  document.getElementById('det-wa').href = waLink(p);
+  document.getElementById('det-share').href = propertyUrl(p);
+  om('mo-detail');
+}
+function switchDetailPhoto(i){
+  document.getElementById('det-main-img').src = currentDetail.fotos[i];
+  document.querySelectorAll('#det-thumbs img').forEach((el,idx)=>el.classList.toggle('active', idx===i));
+}
+
+// ═══════════════════════════════════════════
+//  AUTH
+// ═══════════════════════════════════════════
+function openLogin(){ showLogin(); om('mo-login'); }
+function closeModal(id){ cm(id); const m=document.getElementById('lm-msg'); if(m) m.className='msg'; }
+function showLogin(){
+  document.getElementById('login-form').style.display='block';
+  document.getElementById('signup-form').style.display='none';
+  document.getElementById('lm-title').textContent='🔐 Acceso asesoras';
+  document.getElementById('lm-sub').textContent='Ingresa con tu correo y clave.';
+  document.getElementById('lm-msg').className='msg';
+}
+function showSignup(){
+  document.getElementById('login-form').style.display='none';
+  document.getElementById('signup-form').style.display='block';
+  document.getElementById('lm-title').textContent='✍️ Solicitar acceso';
+  document.getElementById('lm-sub').textContent='Un administrador revisará tu solicitud antes de activarla.';
+  document.getElementById('lm-msg').className='msg';
+}
+function setMsg(id, text, ok){ const m=document.getElementById(id); m.textContent=text; m.className='msg '+(ok?'ok':'err'); }
+
+async function doLogin(){
+  const email=document.getElementById('li-email').value.trim().toLowerCase();
+  const pass=document.getElementById('li-pass').value;
+  if(!email||!pass){ setMsg('lm-msg','Completa correo y clave.'); return; }
+  const btn=document.getElementById('li-btn'); btn.disabled=true; btn.textContent='Ingresando…';
+  try{
+    const d = await post('login',{email,pass});
+    session = d.session;
+    localStorage.setItem('bc_session', JSON.stringify(session));
+    closeModal('mo-login');
+    applySessionUI();
+    showToast('👋 Bienvenida, '+session.nombre);
+  }catch(e){
+    setMsg('lm-msg', e.message==='pending' ? 'Tu solicitud aún está pendiente de aprobación.' : 'Correo o clave incorrectos.');
+  }finally{ btn.disabled=false; btn.textContent='Ingresar'; }
+}
+
+async function doSignup(){
+  const nombre=document.getElementById('su-name').value.trim();
+  const email=document.getElementById('su-email').value.trim().toLowerCase();
+  const pass=document.getElementById('su-pass').value;
+  const pass2=document.getElementById('su-pass2').value;
+  if(!nombre||!email||!pass){ setMsg('lm-msg','Completa todos los campos.'); return; }
+  if(pass.length<8){ setMsg('lm-msg','La clave debe tener al menos 8 caracteres.'); return; }
+  if(pass!==pass2){ setMsg('lm-msg','Las claves no coinciden.'); return; }
+  const btn=document.getElementById('su-btn'); btn.disabled=true; btn.textContent='Enviando…';
+  try{
+    await post('signup',{nombre,email,pass});
+    setMsg('lm-msg','✅ Solicitud enviada. Te avisaremos cuando esté aprobada.', true);
+    document.getElementById('signup-form').querySelectorAll('input').forEach(i=>i.value='');
+  }catch(e){
+    setMsg('lm-msg', e.message==='exists' ? 'Ese correo ya tiene una solicitud o cuenta.' : 'No se pudo enviar la solicitud.');
+  }finally{ btn.disabled=false; btn.textContent='Solicitar acceso'; }
+}
+
+function logout(){ session=null; localStorage.removeItem('bc_session'); applySessionUI(); closeDrawer(); }
+
+function applySessionUI(){
+  const nav=document.getElementById('nav-actions');
+  if(session){
+    nav.innerHTML = `<div class="pill-user">🟢 ${session.nombre}</div>
+      <button class="btn-nav" onclick="openDrawer()">☰ Menú</button>
+      <button class="btn-nav" onclick="logout()">Salir</button>`;
+  }else{
+    nav.innerHTML = `<button class="btn-nav primary" onclick="openLogin()">Acceso asesoras</button>`;
+  }
+}
+function restoreSession(){
+  try{
+    const s=JSON.parse(localStorage.getItem('bc_session')||'null');
+    if(s && s.token){ session=s; applySessionUI(); }
+  }catch(e){}
+}
+
+// ═══════════════════════════════════════════
+//  MENÚ / DASHBOARD
+// ═══════════════════════════════════════════
+function openDrawer(){
+  document.getElementById('who-am-i').textContent = session.email + ' · ' + (session.rol==='admin'?'Admin':'Asesora');
+  document.getElementById('tab-approve').style.display = session.rol==='admin' ? 'block' : 'none';
+  om('drawer'); switchTab('mine');
+}
+function closeDrawer(){ cm('drawer'); }
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===name));
+  document.getElementById('panel-mine').style.display = name==='mine' ? 'block':'none';
+  document.getElementById('panel-approve').style.display = name==='approve' ? 'block':'none';
+  if(name==='mine') loadMine();
+  if(name==='approve') loadPending();
+}
+
+let mineCache = [];
+async function loadMine(){
+  const panel=document.getElementById('panel-mine');
+  panel.innerHTML='<p style="color:var(--mid);font-size:13px">Cargando…</p>';
+  try{
+    const d = await post('listMine', {token:session.token});
+    mineCache = d.data||[];
+    renderDashStats(mineCache);
+    renderMine(mineCache);
+  }catch(e){ panel.innerHTML='<p style="color:var(--red);font-size:13px">No se pudo cargar. Intenta de nuevo.</p>'; }
+}
+
+function renderDashStats(list){
+  const disp = list.filter(p=>p.estatus==='Disponible').length;
+  const pausado = list.filter(p=>p.estatus==='Pausado').length;
+  const cerrado = list.filter(p=>p.estatus==='Cerrado').length;
+  document.getElementById('dash-stats').innerHTML = `
+    <div class="dstat"><div class="n">${list.length}</div><div class="l">Total</div></div>
+    <div class="dstat"><div class="n">${disp}</div><div class="l">Disponibles</div></div>
+    <div class="dstat"><div class="n">${pausado}</div><div class="l">Pausados</div></div>
+    <div class="dstat"><div class="n">${cerrado}</div><div class="l">Cerrados</div></div>`;
+}
+
+function renderMine(list){
+  const panel=document.getElementById('panel-mine');
+  panel.innerHTML = `<button class="btn-mini save" style="margin-bottom:14px" onclick="addNew()">➕ Agregar inmueble</button>` +
+    (list.length ? list.map(p=>`
+    <div class="prow">
+      <div class="prow-head"><b>${p.codigo} · ${p.tipo||''}</b><span style="font-size:12px;color:var(--mid)">${p.estatus||''}</span></div>
+      <div style="font-size:13px;color:var(--mid)">${p.asesora||''} · ${p.precio?('$'+p.precio):'Sin precio'} · 📷 ${(p.fotos||[]).length}</div>
+      <div style="margin-top:10px"><button class="btn-mini" onclick="openEdit('${p.codigo}')">✏️ Editar</button></div>
+    </div>`).join('') : `<p style="color:var(--mid);font-size:13px">Todavía no tienes inmuebles cargados.</p>`);
+}
+
+const ADMIN_FIELDS = [
+  ['tipo','Tipo','text'], ['op','Operación','text'], ['loc','Locación','text'], ['ciudad','Ciudad','text'],
+  ['precio','Precio USD','text'], ['hab','Habitaciones','text'], ['ban','Baños','text'], ['m2c','M2 Construcción','text'],
+  ['estatus','Estatus','select'], ['descripcion','Descripción','textarea'], ['asesora','Asesora','text'],
+];
+const ASESORA_FIELDS = ADMIN_FIELDS.filter(f=>f[0]!=='asesora');
+
+function openEdit(codigo){
+  const p = mineCache.find(x=>x.codigo===codigo);
+  if(!p) return;
+  document.getElementById('ed-title').textContent = 'Editar inmueble';
+  document.getElementById('ed-code').textContent = codigo;
+  document.getElementById('ed-save').dataset.codigo = codigo;
+  editPhotos = (p.fotos||[]).slice();
+  renderPhotoMgr();
+  const fields = session.rol==='admin' ? ADMIN_FIELDS : ASESORA_FIELDS;
+  document.getElementById('ed-fields').innerHTML = fields.map(([key,label,type])=>{
+    if(type==='select'){
+      return `<div class="f"><label>${label}</label><select data-field="${key}">
+        <option ${p.estatus==='Disponible'?'selected':''}>Disponible</option>
+        <option ${p.estatus==='Pausado'?'selected':''}>Pausado</option>
+        <option ${p.estatus==='Cerrado'?'selected':''}>Cerrado</option>
+      </select></div>`;
+    }
+    if(type==='textarea') return `<div class="f"><label>${label}</label><textarea data-field="${key}" rows="3">${p[key]||''}</textarea></div>`;
+    return `<div class="f"><label>${label}</label><input type="text" data-field="${key}" value="${p[key]||''}"></div>`;
+  }).join('');
+  om('mo-edit');
+}
+
+function renderPhotoMgr(){
+  const box = document.getElementById('ed-photos');
+  box.innerHTML = editPhotos.map((url,i)=>`
+    <div class="photo-thumb"><img src="${url}"><button onclick="removePhoto(${i})">✕</button></div>
+  `).join('') + `
+    <label class="photo-add" id="photo-add-btn">➕<input type="file" accept="image/*" multiple onchange="handlePhotoSelect(event)"></label>`;
+}
+
+function removePhoto(i){ editPhotos.splice(i,1); renderPhotoMgr(); }
+
+async function handlePhotoSelect(e){
+  const files = Array.from(e.target.files);
+  if(!files.length) return;
+  const btn = document.getElementById('photo-add-btn');
+  btn.classList.add('uploading');
+  for(const file of files){
+    try{
+      const url = await uploadToCloudinary(file);
+      editPhotos.push(url);
+    }catch(err){ showToast('❌ No se pudo subir una foto'); }
+  }
+  renderPhotoMgr();
+  showToast('📷 Fotos subidas');
+}
+
+async function saveEdit(){
+  const btn = document.getElementById('ed-save');
+  const codigo = btn.dataset.codigo;
+  const fields = { fotos: editPhotos.join(',') };
+  document.querySelectorAll('#ed-fields [data-field]').forEach(el=>fields[el.dataset.field]=el.value);
+  btn.disabled=true; btn.textContent='Guardando…';
+  try{
+    await post('updateProperty',{token:session.token, codigo, fields});
+    showToast('✅ Cambios guardados');
+    localStorage.removeItem('bc_listings');
+    closeModal('mo-edit');
+    loadMine();
+  }catch(e){ showToast('❌ '+e.message); }
+  finally{ btn.disabled=false; btn.textContent='💾 Guardar cambios'; }
+}
+
+async function addNew(){
+  try{
+    const d = await post('addProperty', {token:session.token});
+    showToast('Inmueble '+d.codigo+' creado — complétalo');
+    loadMine();
+  }catch(e){ showToast('❌ '+e.message); }
+}
+
+async function loadPending(){
+  const panel=document.getElementById('panel-approve');
+  panel.innerHTML='<p style="color:var(--mid);font-size:13px">Cargando…</p>';
+  try{
+    const d = await post('listPending', {token:session.token});
+    const list=d.data||[];
+    panel.innerHTML = list.length ? list.map(u=>`
+      <div class="pending-row">
+        <div class="who"><b>${u.nombre}</b>${u.email}</div>
+        <div class="pr-actions">
+          <button class="btn-mini save" onclick="decide('${u.email}','Aprobado',this)">✅ Aprobar</button>
+          <button class="btn-mini gray" onclick="decide('${u.email}','Rechazado',this)">✕ Rechazar</button>
+        </div>
+      </div>`).join('') : `<p style="color:var(--mid);font-size:13px">No hay solicitudes pendientes.</p>`;
+  }catch(e){ panel.innerHTML='<p style="color:var(--red);font-size:13px">No se pudo cargar.</p>'; }
+}
+
+async function decide(email, estado, btn){
+  btn.disabled=true;
+  try{
+    await post('approveUser',{token:session.token, email, estado});
+    showToast(estado==='Aprobado' ? '✅ Acceso aprobado' : 'Solicitud rechazada');
+    loadPending();
+  }catch(e){ showToast('❌ '+e.message); }
+}
+
+// ═══════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════
+function om(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function cm(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function coo(e,id){ if(e.target.id===id) cm(id); }
+function showToast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
+
+document.getElementById('hero-wa').href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent('Hola, quisiera información sobre inmuebles disponibles.')}`;
+
+restoreSession();
+loadPublicListings();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
